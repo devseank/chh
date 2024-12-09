@@ -1,24 +1,16 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import CustomNavbar from './components/CustomNavbar';
 import Main from './pages/Main';
 import About from './pages/About';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
     <div>
-      <nav>
       {/* Navigation Links */}
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Main</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
-      </nav>
+      <CustomNavbar />
 
       {/* Define Routes */}
       <Routes>
