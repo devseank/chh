@@ -16,7 +16,7 @@ function CustomNavbar() {
         {/* Navbar Brand with Logo and Text */}
         <Navbar.Brand
           as={Link}
-          to="/chh"
+          to="/"
           className="d-flex align-items-center"
           style={{
             whiteSpace: 'nowrap', // Prevent wrapping
@@ -59,7 +59,7 @@ function CustomNavbar() {
         {/* Navbar Links */}
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/chh" style={{ color: 'black' }}>
+            <Nav.Link as={Link} to="/" style={{ color: 'black' }}>
               Home
             </Nav.Link>
             <Nav.Link as={Link} to="/about" style={{ color: 'black' }}>
