@@ -4,33 +4,57 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.jpeg'; // Import your logo image
 
 function CustomNavbar() {
-  const imageSize = 60; // Set the size of the image (adjust as needed)
-
   return (
-    <Navbar bg="light" variant="light" expand="lg" sticky="top">
-      <Container className="d-flex justify-content-start">
-        {/* Navbar Brand with Logo */}
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+    <Navbar
+      bg="light"
+      variant="light"
+      expand="lg"
+      sticky="top"
+      style={{ position: 'relative' }}
+    >
+      <Container fluid>
+        {/* Navbar Brand with Logo and Text */}
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          className="d-flex align-items-center"
+          style={{
+            whiteSpace: 'nowrap', // Prevent wrapping
+            maxWidth: 'calc(100% - 60px)', // Prevent overlap with hamburger
+          }}
+        >
+          {/* Responsive Logo */}
           <img
             src={logo}
             alt="Logo"
-            width={imageSize}  // Set the width of the logo
-            height={imageSize} // Set the height of the logo
             className="d-inline-block align-top me-2"
-          />
-          <span
             style={{
-              fontSize: `${imageSize}px`, // Match the font size to the image size
+              height: '50px',
+              width: '50px',
+            }}
+          />
+          {/* Responsive Text */}
+          <span
+            className="navbar-text"
+            style={{
               fontWeight: 'bold',
-              lineHeight: `${imageSize}px`, // Ensure vertical alignment
+              fontSize: '1.2rem', // Default text size
             }}
           >
             캐나다 홈스쿨 홈스테이
           </span>
         </Navbar.Brand>
 
-        {/* Navbar Toggle Button */}
-        <Navbar.Toggle aria-controls="navbar-nav" />
+        {/* Hamburger Menu Always Top-Right */}
+        <Navbar.Toggle
+          aria-controls="navbar-nav"
+          style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            zIndex: 1050,
+          }}
+        />
 
         {/* Navbar Links */}
         <Navbar.Collapse id="navbar-nav">
@@ -44,6 +68,30 @@ function CustomNavbar() {
           </Nav>
         </Navbar.Collapse>
       </Container>
+
+      {/* Inline Responsive CSS */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .navbar-text {
+              font-size: 1rem; /* Reduce text size */
+            }
+            img {
+              height: 30px;
+              width: 30px; /* Reduce logo size */
+            }
+          }
+          @media (max-width: 576px) {
+            .navbar-text {
+              font-size: 0.9rem; /* Further reduce text size */
+            }
+            img {
+              height: 25px;
+              width: 25px; /* Further reduce logo size */
+            }
+          }
+        `}
+      </style>
     </Navbar>
   );
 }
