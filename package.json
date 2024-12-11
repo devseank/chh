@@ -1,7 +1,7 @@
 {
   "name": "chh",
   "version": "0.1.0",
-  "homepage": "https://devseank.github.io",
+  "homepage": "https://devseank.github.io/chh",
   "private": true,
   "dependencies": {
     "bootstrap": "^5.3.3",
