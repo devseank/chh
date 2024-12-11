@@ -14,7 +14,7 @@ function App() {
 
       {/* Define Routes */}
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/chh" element={<Main />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </div>
