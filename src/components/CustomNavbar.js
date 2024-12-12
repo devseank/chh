@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.jpeg'; // Import your logo image
 
 function CustomNavbar() {
+  const [expanded, setExpanded] = useState(false);
+  const location = useLocation(); // To track active page
+
+  const handleLinkClick = () => {
+    setExpanded(false); // Collapse the menu when a link is clicked
+  };
+
   return (
     <Navbar
       bg="light"
       variant="light"
       expand="lg"
       sticky="top"
-      style={{ position: 'relative' }}
+      expanded={expanded} // Control expanded state
     >
       <Container fluid>
         {/* Navbar Brand with Logo and Text */}
         <Navbar.Brand
           as={Link}
           to="/"
+          onClick={handleLinkClick}
           className="d-flex align-items-center"
           style={{
-            whiteSpace: 'nowrap', // Prevent wrapping
-            maxWidth: 'calc(100% - 60px)', // Prevent overlap with hamburger
+            whiteSpace: 'nowrap',
+            maxWidth: 'calc(100% - 60px)',
           }}
         >
           {/* Responsive Logo */}
@@ -33,36 +41,43 @@ function CustomNavbar() {
               width: '50px',
             }}
           />
-          {/* Responsive Text */}
           <span
             className="navbar-text"
             style={{
               fontWeight: 'bold',
-              fontSize: '1.2rem', // Default text size
+              fontSize: '1.2rem',
             }}
           >
             캐나다 홈스쿨 홈스테이
           </span>
         </Navbar.Brand>
 
-        {/* Hamburger Menu Always Top-Right */}
+        {/* Hamburger Menu */}
         <Navbar.Toggle
           aria-controls="navbar-nav"
-          style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            zIndex: 1050,
-          }}
+          aria-label="Toggle navigation"
+          onClick={() => setExpanded(!expanded)} // Toggle expanded state
         />
 
         {/* Navbar Links */}
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/" style={{ color: 'black' }}>
+            <Nav.Link
+              as={Link}
+              to="/"
+              style={{ color: 'black' }}
+              onClick={handleLinkClick} // Collapse on click
+              active={location.pathname === '/'}
+            >
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/about" style={{ color: 'black' }}>
+            <Nav.Link
+              as={Link}
+              to="/about"
+              style={{ color: 'black' }}
+              onClick={handleLinkClick} // Collapse on click
+              active={location.pathname === '/about'}
+            >
               About
             </Nav.Link>
           </Nav>
@@ -74,20 +89,20 @@ function CustomNavbar() {
         {`
           @media (max-width: 768px) {
             .navbar-text {
-              font-size: 1rem; /* Reduce text size */
+              font-size: 1rem;
             }
             img {
               height: 30px;
-              width: 30px; /* Reduce logo size */
+              width: 30px;
             }
           }
           @media (max-width: 576px) {
             .navbar-text {
-              font-size: 0.9rem; /* Further reduce text size */
+              font-size: 0.9rem;
             }
             img {
               height: 25px;
-              width: 25px; /* Further reduce logo size */
+              width: 25px;
             }
           }
         `}
